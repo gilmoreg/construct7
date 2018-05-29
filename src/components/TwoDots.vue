@@ -21,7 +21,7 @@ export default {
     min-width: 100%;
     min-height: 100%;
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
   }
 </style>
 

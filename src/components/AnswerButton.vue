@@ -38,8 +38,8 @@ export default {
   .answer-button {
     width: 150px;
     height: 150px;
-    padding: 0;
     display: block;
+    border-radius: 50%;
   }
 </style>
 

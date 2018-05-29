@@ -7,6 +7,7 @@
       <Dot />
       <Dot />
     </div>
+    <font-awesome-icon :icon="['fas', 'times']" />
   </div>
 </template>
 
