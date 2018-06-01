@@ -1,9 +1,11 @@
 <template>
   <button class="button answer-button">
-    <OneDot v-if="oneDot" />
-    <TwoDots v-if="twoDot" />
-    <ThreeDots v-if="threeDot" />
-    <FourDots v-if="fourDot" />
+    <Correct v-if="this.answer === 'correct'" />
+    <Incorrect v-if="this.answer === 'incorrect'" />
+    <OneDot v-if="this.num === 1" />
+    <TwoDots v-if="this.num === 2" />
+    <ThreeDots v-if="this.num === 3" />
+    <FourDots v-if="this.num === 4" />
   </button>
 </template>
 
@@ -12,34 +14,22 @@ import OneDot from './OneDot';
 import TwoDots from './TwoDots';
 import ThreeDots from './ThreeDots';
 import FourDots from './FourDots';
+import Correct from './Correct';
+import Incorrect from './Incorrect';
 
 export default {
   name: 'AnswerButton',
   props: {
-    num: Number
+    num: Number,
+    answer: String
   },
   components: {
     OneDot,
     TwoDots,
     ThreeDots,
-    FourDots
-  },
-  computed: {
-    oneDot: function() { return this.num === 1 },
-    twoDot: function() { return this.num === 2 },
-    threeDot: function() { return this.num === 3 },
-    fourDot: function() { return this.num === 4 }
+    FourDots,
+    Correct,
+    Incorrect
   }
 }
 </script>
-
-
-<style scoped>
-  .answer-button {
-    width: 150px;
-    height: 150px;
-    display: block;
-    border-radius: 50%;
-  }
-</style>
-

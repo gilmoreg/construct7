@@ -12,6 +12,9 @@ export default {
   name: 'TwoDots',
   components: {
     Dot
+  },
+  props: {
+    answer: String
   }
 }
 </script>

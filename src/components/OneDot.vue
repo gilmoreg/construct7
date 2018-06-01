@@ -1,7 +1,7 @@
 <template>
-  <section class="one-dot">
+  <div class="one-dot">
     <Dot />
-  </section>
+  </div>
 </template>
 
 <script>

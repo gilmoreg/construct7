@@ -3,8 +3,8 @@
     <h2>Construct 7 says:</h2>
     <h3>CALIBRATE VITALS TO MULTIPLES OF 5</h3>
     <section class="buttons-container">
-      <AnswerButton :num=1 />
-      <AnswerButton :num=2 />
+      <AnswerButton :num=1 answer="correct" />
+      <AnswerButton :num=2 answer="incorrect" />
       <AnswerButton :num=3 />
       <AnswerButton :num=4 />
     </section>
@@ -14,6 +14,7 @@
 
 <script>
 import AnswerButton from './AnswerButton';
+
 export default {
   name: 'QuizContainer',
   components: {
