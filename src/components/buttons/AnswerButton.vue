@@ -1,5 +1,5 @@
 <template>
-  <button class="button answer-button">
+  <button class="button answer-button" @click="toggle">
     <Correct v-if="this.answer === 'correct'" />
     <Incorrect v-if="this.answer === 'incorrect'" />
     <OneDot v-if="this.num === 1" />
@@ -19,9 +19,15 @@ import Incorrect from './Incorrect';
 
 export default {
   name: 'AnswerButton',
+  data () {
+    return {
+      selected: false
+    }
+  },
   props: {
     num: Number,
-    answer: String
+    answer: String,
+    calculateHp: Function
   },
   components: {
     OneDot,
@@ -30,6 +36,12 @@ export default {
     FourDots,
     Correct,
     Incorrect
+  },
+  methods: {
+    toggle: function () {
+      this.selected = !this.selected;
+      this.calculateHp(this.selected ? this.num : 0);
+    }
   }
 }
 </script>

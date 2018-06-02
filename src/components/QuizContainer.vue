@@ -3,22 +3,34 @@
     <h2>Construct 7 says:</h2>
     <h3>CALIBRATE VITALS TO MULTIPLES OF 5</h3>
     <section class="buttons-container">
-      <AnswerButton :num=1 answer="correct" />
-      <AnswerButton :num=2 answer="incorrect" />
-      <AnswerButton :num=3 />
-      <AnswerButton :num=4 />
+      <AnswerButton :num=1 :calculateHp=calculateHp answer="correct" />
+      <AnswerButton :num=2 :calculateHp=calculateHp answer="incorrect" />
+      <AnswerButton :num=3 :calculateHp=calculateHp />
+      <AnswerButton :num=4 :calculateHp=calculateHp />
     </section>
-    <h4>Your Hp: 2</h4>
+    <h4>Your Hp: {{ this.currentHp }}</h4>
   </section>
 </template>
 
 <script>
-import AnswerButton from './AnswerButton';
+import AnswerButton from './buttons/AnswerButton';
 
 export default {
   name: 'QuizContainer',
   components: {
     AnswerButton
+  },
+  data () { 
+    return {
+      startingHp: 0,
+      currentHp: 0
+    }
+  },
+  methods: {
+    // Pass 0 to reset
+    calculateHp: function (value) {
+      this.currentHp = this.startingHp + value;
+    }
   }
 }
 </script>
