@@ -11,22 +11,22 @@ export default class QuizEngine {
   endChallengeCb;
 
   constructor(tickCb, endChallengeCb) {
-    this.challenge = new Challenge();
-    this.currentHp = this.challenge.startingHp;
     this.tickCb = tickCb;
     this.endChallengeCb = endChallengeCb;
   }
 
   startChallenge() {
     this.challenge = new Challenge();
+    this.currentHp = this.challenge.startingHp;
+    console.log('init hp', this.challenge.startingHp, this.currentHp); // eslint-disable-line
     this.msRemaining = 10000;
-    this.interval = setInterval(this.tick, TICKMS);
+    this.interval = setInterval(() => this.tick(), TICKMS);
   }
 
   endChallenge() {
     clearInterval(this.interval);
     const values = [1,2,3,4].map(num => this.challenge.startingHp + num);
-    const answers = this.challenge.answers(values);
+    const answers = this.challenge.getAnswers(values);
     this.endChallengeCb(answers);
   }
 
@@ -40,6 +40,7 @@ export default class QuizEngine {
 
   setCurrentHp(value) {
     this.currentHp = this.challenge.startingHp + value;
+    console.log('setting hp', this.challenge.startingHp, value, this.currentHp); // eslint-disable-line
   }
 
   getMessage() {

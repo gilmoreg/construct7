@@ -1,15 +1,17 @@
 <template>
   <section class="quizcontainer">
     <h2>Construct 7 says:</h2>
-    <h3>CALIBRATE VITALS TO {{ this.quizEngine.getMessage() }}</h3>
+    <h3>CALIBRATE VITALS TO {{ this.message }}</h3>
     <p>INACCURACY WILL BE PUNISHED</p>
     <section class="buttons-container">
-      <AnswerButton :num=1 :calculateHp=calculateHp :selected=isSelected(1) answer="correct" />
-      <AnswerButton :num=2 :calculateHp=calculateHp :selected=isSelected(2) answer="incorrect" />
-      <AnswerButton :num=3 :calculateHp=calculateHp :selected=isSelected(3) />
-      <AnswerButton :num=4 :calculateHp=calculateHp :selected=isSelected(4) />
+      <AnswerButton :num=1 :calculateHp=calculateHp :selected=isSelected(1) :answer=answers[0] />
+      <AnswerButton :num=2 :calculateHp=calculateHp :selected=isSelected(2) :answer=answers[1] />
+      <AnswerButton :num=3 :calculateHp=calculateHp :selected=isSelected(3) :answer=answers[2] />
+      <AnswerButton :num=4 :calculateHp=calculateHp :selected=isSelected(4) :answer=answers[3] />
     </section>
+    <button class="button" @click=done>Done</button>
     <h4>Your Hp: {{ this.currentHp }}</h4>
+    <h4>Time Remaining: {{ this.timeRemaining }}</h4>
   </section>
 </template>
 
@@ -24,8 +26,10 @@ export default {
   },
   data () { 
     return {
-      quizEngine: new QuizEngine(),
-      selected: 0
+      quizEngine: null,
+      selected: 0,
+      answers: ['','','',''],
+      timeRemaining: 0
     }
   },
   methods: {
@@ -36,10 +40,20 @@ export default {
     },
     isSelected: function (num) {
       return num === this.selected;
-    }
+    },
+    displayAnswers: function(values) {
+      this.answers = values;
+    },
+    tick: function(value) { this.timeRemaining = value; },
+    done: function() { this.quizEngine.endChallenge(); }
   },
   computed: {
-    currentHp: function() { return this.quizEngine ? this.quizEngine.currentHp : 0; }
+    currentHp: function() { return this.quizEngine ? this.quizEngine.currentHp : 0; },
+    message: function() { return this.quizEngine ? this.quizEngine.getMessage() : '' }
+  },
+  mounted: function() {
+    this.quizEngine = new QuizEngine(this.tick, this.displayAnswers);
+    this.quizEngine.startChallenge();
   }
 }
 </script>

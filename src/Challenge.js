@@ -48,11 +48,12 @@ export default class Challenge {
     // Therefore at least one button will be a solution
     // HP of 1 will always have a solution so set that as a minimum
     this.startingHp = Math.max(1, targetHp - getRandomIndex(1, 5));
+    console.log('challenge init hp', this.startingHp, 'targetHp', targetHp); // eslint-disable-line
   }
 
-  answers(values) {
+  getAnswers(values) {
     return values.map(value =>
-      this.answers.contains(value) ? 'correct' : 'incorrect');
+      this.answers.includes(value) ? 'correct' : 'incorrect');
   }
 
 
