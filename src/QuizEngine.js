@@ -18,7 +18,6 @@ export default class QuizEngine {
   startChallenge() {
     this.challenge = new Challenge();
     this.currentHp = this.challenge.startingHp;
-    console.log('init hp', this.challenge.startingHp, this.currentHp); // eslint-disable-line
     this.msRemaining = 10000;
     this.interval = setInterval(() => this.tick(), TICKMS);
   }
@@ -40,11 +39,14 @@ export default class QuizEngine {
 
   setCurrentHp(value) {
     this.currentHp = this.challenge.startingHp + value;
-    console.log('setting hp', this.challenge.startingHp, value, this.currentHp); // eslint-disable-line
   }
 
   getMessage() {
     return this.challenge.message;
+  }
+
+  getCastMessage() {
+    return this.challenge.cast;
   }
 
   tick() {

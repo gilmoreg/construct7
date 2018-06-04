@@ -3,6 +3,7 @@
     <h2>Construct 7 says:</h2>
     <h3>CALIBRATE VITALS TO {{ this.message }}</h3>
     <p>INACCURACY WILL BE PUNISHED</p>
+    <ProgressBar :value=timeRemaining :text=castMessage />
     <section class="buttons-container">
       <AnswerButton :num=1 :calculateHp=calculateHp :selected=isSelected(1) :answer=answers[0] />
       <AnswerButton :num=2 :calculateHp=calculateHp :selected=isSelected(2) :answer=answers[1] />
@@ -11,18 +12,19 @@
     </section>
     <button class="button" @click=done>Done</button>
     <h4>Your Hp: {{ this.currentHp }}</h4>
-    <h4>Time Remaining: {{ this.timeRemaining }}</h4>
   </section>
 </template>
 
 <script>
 import QuizEngine from '../QuizEngine';
 import AnswerButton from './buttons/AnswerButton';
+import ProgressBar from './ProgressBar';
 
 export default {
   name: 'QuizContainer',
   components: {
-    AnswerButton
+    AnswerButton,
+    ProgressBar
   },
   data () { 
     return {
@@ -49,7 +51,8 @@ export default {
   },
   computed: {
     currentHp: function() { return this.quizEngine ? this.quizEngine.currentHp : 0; },
-    message: function() { return this.quizEngine ? this.quizEngine.getMessage() : '' }
+    message: function() { return this.quizEngine ? this.quizEngine.getMessage() : '' },
+    castMessage: function() { return this.quizEngine ? this.quizEngine.getCastMessage() : '' }
   },
   mounted: function() {
     this.quizEngine = new QuizEngine(this.tick, this.displayAnswers);
