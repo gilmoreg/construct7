@@ -52,9 +52,7 @@ export default class QuizEngine {
   tick() {
     this.msRemaining -= TICKMS;
     this.tickCb(Math.max(0, this.msRemaining));
-    if (this.msRemaining <= 0) {
+    if (this.msRemaining <= 0)
       this.endChallenge();
-      return;
-    }
   }
 }
