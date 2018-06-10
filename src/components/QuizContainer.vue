@@ -3,16 +3,15 @@
     <h2>Construct 7 says:</h2>
     <img src="../assets/FFT_Automaton_Portrait.png" />
     <h3>CALIBRATE VITALS TO {{ this.message }}</h3>
-    <p>INACCURACY WILL BE PUNISHED</p>
     <ProgressBar :value=timeRemaining :text=castMessage />
     <section class="buttons-container">
-      <AnswerButton :num=1 :calculateHp=calculateHp :selected=isSelected(1) :answer=answers[0] />
-      <AnswerButton :num=2 :calculateHp=calculateHp :selected=isSelected(2) :answer=answers[1] />
-      <AnswerButton :num=3 :calculateHp=calculateHp :selected=isSelected(3) :answer=answers[2] />
-      <AnswerButton :num=4 :calculateHp=calculateHp :selected=isSelected(4) :answer=answers[3] />
+      <AnswerButton :num=1 :select=select :selected=isSelected(1) :answer=answers[0] />
+      <AnswerButton :num=2 :select=select :selected=isSelected(2) :answer=answers[1] />
+      <AnswerButton :num=3 :select=select :selected=isSelected(3) :answer=answers[2] />
+      <AnswerButton :num=4 :select=select :selected=isSelected(4) :answer=answers[3] />
     </section>
-    <button class="button" @click=done>{{ this.challengeActive ? 'Done' : 'Again'}}</button>
     <h4>Your Hp: {{ this.currentHp }}</h4>
+    <button class="button" @click=done>{{ this.challengeActive ? 'Done' : 'Again'}}</button>
   </section>
 </template>
 
@@ -36,10 +35,13 @@ export default {
     }
   },
   methods: {
-    // Pass 0 to reset
-    calculateHp: function (value) {
-      this.selected = value;
-      this.quizEngine.setCurrentHp(value);
+    select: function(value) {
+      if (value === this.selected) {
+        this.selected = 0;
+      } else {
+        this.selected = value;
+      }
+      this.quizEngine.setCurrentHp(this.selected);
     },
     isSelected: function (num) {
       return num === this.selected;

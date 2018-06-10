@@ -22,7 +22,7 @@ export default {
   props: {
     num: Number,
     answer: String,
-    calculateHp: Function,
+    select: Function,
     selected: Boolean
   },
   data () {
@@ -38,19 +38,11 @@ export default {
   },
   methods: {
     toggle: function () {
-      this.isSelected = !this.isSelected;
-      this.calculateHp(this.isSelected ? this.num : 0);
+      this.select(this.num);
     }
   },
   computed: {
-    classes: function() { return `button answer-button ${this.selected ? 'selected' : '' }`; }
+    classes: function() { return `button answer-button${this.selected ? ' isselected' : '' }`; }
   }
 }
 </script>
-
-<style>
-.selected {
-  border: 5px solid blue;
-}
-</style>
-

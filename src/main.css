@@ -28,6 +28,10 @@ header p {
   z-index: 1;
 }
 
+.isselected {
+  border: 5px solid blue;
+}
+
 footer {
   position: fixed;
   width: 100%;

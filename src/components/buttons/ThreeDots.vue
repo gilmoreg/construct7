@@ -21,7 +21,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
   .three-dots {
     display: grid;
     grid-template-rows: 50% 50%;

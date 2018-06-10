@@ -15,7 +15,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
   .one-dot {
     min-width: 100%;
     min-height: 100%;
