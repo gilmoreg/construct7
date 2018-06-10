@@ -1,6 +1,7 @@
 <template>
   <section class="quizcontainer">
     <h2>Construct 7 says:</h2>
+    <img src="../assets/FFT_Automaton_Portrait.png" />
     <h3>CALIBRATE VITALS TO {{ this.message }}</h3>
     <p>INACCURACY WILL BE PUNISHED</p>
     <ProgressBar :value=timeRemaining :text=castMessage />
@@ -64,9 +65,7 @@ export default {
 <style>
   .buttons-container {
     max-width: 860px;
-    border: 1px solid black;
-    border-radius: 5px;
-    margin: 0 auto;
+    margin: 1em auto;
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
